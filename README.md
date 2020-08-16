@@ -4,7 +4,7 @@ This is the popular word game called Hangman where the user needs to guess a gam
 
 # How it works
 
-1. The user needs to guess a game within a specific number of tries.
+1. The user needs to guess a word within a specific number of tries.
 2. If the user exceeds the number of tries, then he or she loses.
 
 # Screenshots
