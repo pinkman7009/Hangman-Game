@@ -7,6 +7,10 @@ This is the popular word game called Hangman where the user needs to guess a gam
 1. The user needs to guess a game within a specific number of tries.
 2. If the user exceeds the number of tries, then he or she loses.
 
+# Screenshots
+<img src="screenshots/hangman1.png">
+<img src="screenshots/hangman2.png">
+
 # Built with 
 
 1. React Hooks
