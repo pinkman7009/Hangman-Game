@@ -46,6 +46,12 @@ function App() {
 		},
 		[ correctLetters, wrongLetters, playable ]
 	);
+	const playAgain = () => {
+		setPlayable(true);
+		setCorrectLetters([]);
+		setWrongLetters([]);
+		selectedWord = words[Math.floor(Math.random() * words.length)];
+	};
 	return (
 		<React.Fragment>
 			<Header />
@@ -54,7 +60,13 @@ function App() {
 				{wrongLetters.length > 0 && <Wrong wrongLetters={wrongLetters} />}
 				<Word selectedWord={selectedWord} correctLetters={correctLetters} />
 			</div>
-			<Popup />
+			<Popup
+				correctLetters={correctLetters}
+				wrongLetters={wrongLetters}
+				selectedWord={selectedWord}
+				setPlayable={setPlayable}
+				playAgain={playAgain}
+			/>
 			<Notification showNotifications={showNotifications} />
 		</React.Fragment>
 	);
