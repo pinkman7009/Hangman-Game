@@ -16,16 +16,39 @@ function App() {
 	const [ correctLetters, setCorrectLetters ] = useState([]);
 	const [ wrongLetters, setWrongLetters ] = useState([]);
 
-	useEffect(() => {
-		const handleKeydown = (event) => {
-			const { key, keyCode } = event;
-		};
-	});
+	useEffect(
+		() => {
+			const handleKeydown = (event) => {
+				const { key, keyCode } = event;
+				if (playable && keyCode >= 65 && keyCode <= 90) {
+					const letter = key.toLowerCase();
+
+					if (selectedWord.includes(letter)) {
+						if (!correctLetters.includes(letter)) {
+							setCorrectLetters((currentLetters) => [ ...currentLetters, letter ]);
+						} else {
+							//ShowNotification
+						}
+					} else {
+						if (!wrongLetters.includes(letter)) {
+							setWrongLetters((currentLetters) => [ ...currentLetters, letter ]);
+						} else {
+							// Show Notifcation
+						}
+					}
+				}
+			};
+			window.addEventListener('keydown', handleKeydown);
+
+			return () => window.removeEventListener('keydown', handleKeydown);
+		},
+		[ correctLetters, wrongLetters, playable ]
+	);
 	return (
 		<React.Fragment>
 			<Header />
 			<div className="game-container">
-				<Figure />
+				<Figure wrongLetters={wrongLetters} />
 				<Wrong wrongLetters={wrongLetters} />
 				<Word selectedWord={selectedWord} correctLetters={correctLetters} />
 			</div>
