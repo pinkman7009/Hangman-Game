@@ -4,8 +4,9 @@ import Header from './components/Header';
 import Figure from './components/Figure';
 import Wrong from './components/Wrong';
 import Word from './components/Word';
-import Popup from './components/Popup';
 import Notification from './components/Notification';
+import Popup from './components/Popup';
+import { showNotifications as show } from './helpers/helpers';
 
 const words = [ 'application', 'programming', 'interface', 'wizard' ];
 
@@ -15,6 +16,7 @@ function App() {
 	const [ playable, setPlayable ] = useState(true);
 	const [ correctLetters, setCorrectLetters ] = useState([]);
 	const [ wrongLetters, setWrongLetters ] = useState([]);
+	const [ showNotifications, setShowNotification ] = useState(false);
 
 	useEffect(
 		() => {
@@ -27,13 +29,13 @@ function App() {
 						if (!correctLetters.includes(letter)) {
 							setCorrectLetters((currentLetters) => [ ...currentLetters, letter ]);
 						} else {
-							//ShowNotification
+							show(setShowNotification);
 						}
 					} else {
 						if (!wrongLetters.includes(letter)) {
 							setWrongLetters((currentLetters) => [ ...currentLetters, letter ]);
 						} else {
-							// Show Notifcation
+							show(setShowNotification);
 						}
 					}
 				}
@@ -49,9 +51,11 @@ function App() {
 			<Header />
 			<div className="game-container">
 				<Figure wrongLetters={wrongLetters} />
-				<Wrong wrongLetters={wrongLetters} />
+				{wrongLetters.length > 0 && <Wrong wrongLetters={wrongLetters} />}
 				<Word selectedWord={selectedWord} correctLetters={correctLetters} />
 			</div>
+			<Popup />
+			<Notification showNotifications={showNotifications} />
 		</React.Fragment>
 	);
 }
