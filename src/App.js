@@ -8,7 +8,26 @@ import Notification from './components/Notification';
 import Popup from './components/Popup';
 import { showNotifications as show } from './helpers/helpers';
 
-const words = [ 'application', 'programming', 'interface', 'wizard' ];
+const words = [
+	'application',
+	'programming',
+	'interface',
+	'wizard',
+	'nuisance',
+	'neophyte',
+	'gullible',
+	'naive',
+	'bromance',
+	'hortatory',
+	'gigantic',
+	'monstrous',
+	'vivid',
+	'juxtapose',
+	'omnipresent',
+	'contradiction',
+	'sophisticated',
+	'essence'
+];
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
